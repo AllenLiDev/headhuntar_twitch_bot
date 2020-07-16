@@ -1,2 +1,4 @@
-# howoldami_bot_twitch
-bot to track how old you are in a channel
+# headhuntar_twitch_bot 
+Custom channel bot for Twitch.tv/headhuntar
+
+Created by AllenLiDev aka Headhuntar
