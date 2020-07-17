@@ -26,19 +26,30 @@ client.on('connected', onConnectedHandler);
 client.connect();
 
 // Called every time a message comes in
-function onMessageHandler(target, context, msg, self) {
+function onMessageHandler(user, userInfo, msg, self) {
   if (self) { return; } // Ignore messages from the bot
+
+  // console.log(user, userInfo)
 
   // Remove whitespace from chat message
   const commandName = msg.trim();
 
   // If the command is known, let's execute it
-  if (commandName === '!dice') {
-    const num = rollDice();
-    client.say(target, `You rolled a ${num}`);
-    console.log(`* Executed ${commandName} command`);
-  } else {
-    console.log(`* Unknown command ${commandName}`);
+  switch (commandName) {
+    case '!action':
+      client.action(user, 'sociallink');
+      break;
+    case '!bot':
+      client.say(user, `Im a chat bot created by @Headhuntar. Beep Boop.`);
+      break;
+    case '!youtube':
+      client.say(user, `Check out my youtube channel https://www.youtube.com/channel/UC129b2Rxm14Zd33umONHZ-A`);
+      break;
+    case '!dice':
+      client.say(user, `You rolled a number`);
+      break;
+    default:
+      console.log(`* Unknown command ${commandName}`);
   }
 }
 
