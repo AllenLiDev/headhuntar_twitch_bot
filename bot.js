@@ -15,6 +15,10 @@ const opts = {
   ]
 };
 
+const commands = {
+  bot: 'I am a chat bot created by Headhuntar. Beep Boop',
+
+}
 // Create a client with our options
 const client = new tmi.client(opts);
 
@@ -35,21 +39,14 @@ function onMessageHandler(user, userInfo, msg, self) {
   const commandName = msg.trim();
 
   // If the command is known, let's execute it
-  switch (commandName) {
-    case '!action':
-      client.action(user, 'sociallink');
-      break;
-    case '!bot':
-      client.say(user, `Im a chat bot created by @Headhuntar. Beep Boop.`);
-      break;
-    case '!youtube':
-      client.say(user, `Check out my youtube channel https://www.youtube.com/channel/UC129b2Rxm14Zd33umONHZ-A`);
-      break;
-    case '!dice':
-      client.say(user, `You rolled a number`);
-      break;
-    default:
-      console.log(`* Unknown command ${commandName}`);
+  client.say(user, runCommand(commandName));
+}
+
+const runCommand = (command) => {
+  if (commands.hasOwnProperty(command)) {
+    return commands[command];
+  } else {
+    console.log('command not found');
   }
 }
 
