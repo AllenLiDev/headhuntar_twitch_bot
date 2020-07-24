@@ -16,7 +16,8 @@ const opts = {
 };
 
 const commands = {
-  bot: 'I am a chat bot created by Headhuntar. Beep Boop',
+  notFound: 'Type !Commands for list of available bot commands.',
+  '!bot': 'I am a chat bot created by Headhuntar. Beep Boop'
 
 }
 // Create a client with our options
@@ -39,15 +40,25 @@ function onMessageHandler(user, userInfo, msg, self) {
   const commandName = msg.trim();
 
   // If the command is known, let's execute it
-  client.say(user, runCommand(commandName));
+  if (commandName[0] === "!") {
+    client.say(user, runCommand(commandName));
+  }
 }
 
 const runCommand = (command) => {
+  if (command === '!commands') {
+    console.log(getCommands());
+  }
   if (commands.hasOwnProperty(command)) {
     return commands[command];
   } else {
     console.log('command not found');
+    return commands.notFound;
   }
+}
+
+const getCommands = () => {
+  return Object.keys(commands);
 }
 
 // Function called when the "dice" command is issued
