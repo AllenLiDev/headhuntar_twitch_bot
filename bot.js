@@ -15,17 +15,6 @@ const opts = {
   ]
 };
 
-const headshot = () => {
-  let percent = Math.floor(Math.random() * 100) + 1;
-  if (percent === 99) {
-    return '100%. headhu11Pog PogChamp headhu11Pog';
-  }
-  if (percent === 0) {
-    return '0%. KEKW KEKW KEKW'
-  }
-  return `${percent}%`;
-}
-
 const commands = {
   notFound: 'Type !Commands for list of available bot commands.',
   '!bot': 'I am a chat bot created by Headhuntar. Beep Boop.',
@@ -40,7 +29,6 @@ const commands = {
   '!rank': 'Current Valorant Rank: D1. I working on it.',
   '!physio': 'Get some gaming physio and posture tips from 2 real physios @ https://www.twitch.tv/physiobros',
   '!marcus': 'Marcus the first MOD. Hes responsible for clipping my headhu11Pog plays.',
-  // '!headshot': `Beep Boop. I calculated your name will result in a headshot percent of ${Math.floor(Math.random() * 100) + 1}`
 }
 // Create a client with our options
 const client = new tmi.client(opts);
@@ -59,9 +47,14 @@ function onMessageHandler(user, userInfo, msg, self) {
   // console.log(user, userInfo)
 
   // Remove whitespace from chat message
-  const commandName = msg.trim();
+  const commandName = msg.trim().toLowerCase();
 
   // If the command is known, let's execute it
+  if (commandName === '!headshot') {
+    console.log(`Request by user ${userInfo}`)
+    let hs = getHeadshot();
+    client.say(user, `Beep Boop. I calculated your name will result in a headshot of ${hs}`);
+  }
   if (commandName[0] === "!") {
     client.say(user, runCommand(commandName));
   }
@@ -70,8 +63,7 @@ function onMessageHandler(user, userInfo, msg, self) {
 const runCommand = (command) => {
   if (command === '!commands') {
     console.log(getCommands());
-  }
-  if (commands.hasOwnProperty(command)) {
+  } else if (commands.hasOwnProperty(command)) {
     return commands[command];
   } else {
     console.log('command not found');
@@ -83,10 +75,16 @@ const getCommands = () => {
   return Object.keys(commands);
 }
 
-// Function called when the "dice" command is issued
-function rollDice() {
-  const sides = 6;
-  return Math.floor(Math.random() * sides) + 1;
+// Function called when the Headshot command is issued
+const getHeadshot = () => {
+  let percent = Math.floor(Math.random() * 100) + 1;
+  if (percent === 99) {
+    return '100%. headhu11Pog PogChamp headhu11Pog';
+  }
+  if (percent === 0) {
+    return '0%. KEKW KEKW KEKW'
+  }
+  return `${percent}%`;
 }
 
 // Called every time the bot connects to Twitch chat
