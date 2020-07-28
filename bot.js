@@ -15,10 +15,32 @@ const opts = {
   ]
 };
 
+const headshot = () => {
+  let percent = Math.floor(Math.random() * 100) + 1;
+  if (percent === 99) {
+    return '100%. headhu11Pog PogChamp headhu11Pog';
+  }
+  if (percent === 0) {
+    return '0%. KEKW KEKW KEKW'
+  }
+  return `${percent}%`;
+}
+
 const commands = {
   notFound: 'Type !Commands for list of available bot commands.',
-  '!bot': 'I am a chat bot created by Headhuntar. Beep Boop'
-
+  '!bot': 'I am a chat bot created by Headhuntar. Beep Boop.',
+  '!dev': 'Headhuntar is a Full Stack Developer. Check out my github @ https://github.com/AllenLiDev .',
+  '!apex': 'I am a TTV Wraith Main LUL. My Highest Rank was Apex Predator in Season 2.',
+  '!csgo': 'I solo queued to Global Elite longggg time ago on CS GO.',
+  '!emotes': 'https://www.twitch.tv/ksen1y give her a follow!',
+  '!valorant': 'On that Grind for Radiant, but I will be happy to hit Immortal 3! Tune in daily for the grind!',
+  '!youtube': 'Check out and follow my youtube @ https://www.youtube.com/user/huntedhunter/',
+  '!twitter': 'Its kinda dead but follow me for updates about next stream or irl stuff @ https://twitter.com/headhuntar',
+  '!insta': 'Dont have',
+  '!rank': 'Current Valorant Rank: D1. I working on it.',
+  '!physio': 'Get some gaming physio and posture tips from 2 real physios @ https://www.twitch.tv/physiobros',
+  '!marcus': 'Marcus the first MOD. Hes responsible for clipping my headhu11Pog plays.',
+  // '!headshot': `Beep Boop. I calculated your name will result in a headshot percent of ${Math.floor(Math.random() * 100) + 1}`
 }
 // Create a client with our options
 const client = new tmi.client(opts);
