@@ -17,6 +17,7 @@ const opts = {
 
 const commands = {
   notFound: 'Type !Commands for list of available bot commands.',
+  '!headshot': '',
   '!bot': 'I am a chat bot created by Headhuntar. Beep Boop.',
   '!dev': 'Headhuntar is a Full Stack Developer. Check out my github @ https://github.com/AllenLiDev .',
   '!apex': 'I am a TTV Wraith Main LUL. My Highest Rank was Apex Predator in Season 2.',
@@ -29,6 +30,8 @@ const commands = {
   '!rank': 'Current Valorant Rank: D1. I working on it.',
   '!physio': 'Get some gaming physio and posture tips from 2 real physios @ https://www.twitch.tv/physiobros',
   '!marcus': 'Marcus the first MOD. Hes responsible for clipping my headhu11Pog plays.',
+  '!prime': 'Did you know you can subscribe for free with Twitch Prime? https://twitch.amazon.com/tp',
+  '!subscribe': 'Subscribe to my channel here: https://www.twitch.tv/products/headhuntar !'
 }
 // Create a client with our options
 const client = new tmi.client(opts);
@@ -62,7 +65,7 @@ function onMessageHandler(user, userInfo, msg, self) {
 
 const runCommand = (command) => {
   if (command === '!commands') {
-    console.log(getCommands());
+    return (getCommands());
   } else if (commands.hasOwnProperty(command)) {
     return commands[command];
   } else {
@@ -72,7 +75,15 @@ const runCommand = (command) => {
 }
 
 const getCommands = () => {
-  return Object.keys(commands);
+  let availableCommands = "Commands: ";
+  for (const key of Object.keys(commands)) {
+    if (key === 'notFound') {
+      //do nothing
+    } else {
+      availableCommands = availableCommands + ", " + key;
+    }
+  }
+  return availableCommands;
 }
 
 // Function called when the Headshot command is issued
