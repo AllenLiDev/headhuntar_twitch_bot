@@ -4,6 +4,7 @@
   "description": "twitch chat bot to check how old you are in a channel",
   "main": "index.js",
   "scripts": {
+    "start": "node bot.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,9 @@
   ],
   "author": "allenlidev",
   "license": "ISC",
+  "engines": {
+    "node": "12.x"
+  },
   "bugs": {
     "url": "https://github.com/AllenLiDev/howoldami_bot_twitch/issues"
   },
